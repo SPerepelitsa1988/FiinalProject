@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="CrossBrowserTestExample">
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.telesens.test.tests.AddreessTest" >
+                <!--<methods>-->
+                    <!--<include name="testDemo" />-->
+                    <!--<exclude name="addNewAddressTest" />-->
+                <!--</methods>-->
+            </class>
+        </classes>
+    </test>
+    <!--<test name="ChromeTest">-->
+        <!--<parameter name="browser" value="chrome"/>-->
+        <!--<packages>-->
+            <!--<package name="com.telesens.*">-->
+            <!--</package>-->
+        <!--</packages>-->
+    <!--</test>-->
+    <!--<test name="IETest">-->
+        <!--<parameter name="browser" value="IE"/>-->
+        <!--<packages>-->
+            <!--<package name="com.telesens.*">-->
+            <!--</package>-->
+        <!--</packages>-->
+    <!--</test>-->
+    <!--<test name="EdgeTest">-->
+        <!--<parameter name="browser" value="edge"/>-->
+        <!--<packages>-->
+            <!--<package name="com.telesens.*">-->
+            <!--</package>-->
+        <!--</packages>-->
+    <!--</test>-->
+</suite>
