@@ -1,13 +1,16 @@
 package com.telesens.automationpractice.appmanager.helper;
 
 import com.telesens.automationpractice.appmanager.model.AddressData;
+import com.telesens.automationpractice.appmanager.model.Addresses;
 import com.telesens.automationpractice.appmanager.page.AccountPage;
 import com.telesens.automationpractice.appmanager.page.FormAddressPage;
 import com.telesens.automationpractice.appmanager.page.MyAddressPage;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AddressHelper {
 
@@ -17,7 +20,7 @@ public class AddressHelper {
         this.driver = driver;
     }
 
-    public void initCreationAddress() {
+    public void initCreation() {
         new MyAddressPage(driver)
                 .clickByAddNewAddress();
     }
@@ -33,7 +36,7 @@ public class AddressHelper {
                 .clickByAccountLink();
     }
 
-    public void fillAddressForm(AddressData addressData) {
+    public void fillForm(AddressData addressData) {
         new FormAddressPage(driver)
                 .inputFirstName(addressData.getFirstName())
                 .inputsLastName(addressData.getLastName())
@@ -44,34 +47,30 @@ public class AddressHelper {
                 .inputCountry(addressData.getCountry())
                 .inputHomePhone(addressData.getHomePhone())
                 .inputMobilePhone(addressData.getMobilePhone())
-                .inputAddressAlias(addressData.getAddressAlias());
-
-//        Select selectStateEl = new Select(driver.findElement(By.id("id_state")));
-//        selectStateEl.selectByValue("4");
+                .inputAddressAlias(addressData.getAlias());
     }
 
-    public void submitAddress() {
+    public void submit() {
         new FormAddressPage(driver)
                 .clickSaveButton();
     }
 
-    public boolean isPresentAddressAlias(String addressAlias) {
+    public boolean isPresentAlias(String addressAlias) {
         return new MyAddressPage(driver)
                 .getAddressAliasList()
                 .contains(addressAlias.toUpperCase());
     }
 
     // TOdo
-    public void removeAddressByAlias(String addressAlias) {
+    public void remove(String addressAlias) {
         new MyAddressPage(driver)
                 .clickDeleteButton(addressAlias)
                 .acceptDeletion();
 
     }
 
-    // TODO
-    public List<AddressData> getAddresses() {
-        List<AddressData> addressDataList = new ArrayList<>();
+    public Addresses all() {
+        Addresses addressAll = new Addresses();
 
         List<String> firstNames = new MyAddressPage(driver).getFirstNameList();
         List<String> lastNames = new MyAddressPage(driver).getLastNameList();
@@ -85,7 +84,7 @@ public class AddressHelper {
         List<String> addressAliases = new MyAddressPage(driver).getAddressAliasList();
 
         for (int i = 0; i < addressAliases.size(); i++) {
-            addressDataList.add(new AddressData()
+            addressAll.add(new AddressData()
                     .withFirstName(firstNames.get(i))
                     .withLastName(lastNames.get(i))
                     .withAddress(addresses.get(i))
@@ -99,6 +98,6 @@ public class AddressHelper {
             );
         }
 
-        return addressDataList;
+        return addressAll;
     }
 }

@@ -50,7 +50,7 @@ public class AddressData {
         return mobilePhone;
     }
 
-    public String getAddressAlias() {
+    public String getAlias() {
         return addressAlias;
     }
 

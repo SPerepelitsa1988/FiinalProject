@@ -23,11 +23,11 @@ public class ApplicationManager {
         this.browser = browser;
     }
 
-    public AddressHelper getAddressHelper() {
+    public AddressHelper address() {
         return addressHelper;
     }
 
-    public SessionHelper getSessionHelper() {
+    public SessionHelper session() {
         return sessionHelper;
     }
 
