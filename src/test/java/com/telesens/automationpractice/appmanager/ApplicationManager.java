@@ -53,7 +53,6 @@ public class ApplicationManager {
             driver = new FirefoxDriver();
         }
         else if(browser.equals("IE")) {
-            File ie = new File("d:/distribs/selenium/IEDriverServer.exe");
             System.setProperty("webdriver.ie.driver", properties.getProperty("ie.driver"));
             driver = new InternetExplorerDriver();
         }
