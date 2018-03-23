@@ -1,4 +1,4 @@
-package com.telesens.test.appmanager.helper;
+package com.telesens.automationpractice.appmanager.helper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package com.telesens.test.tests;
+package com.telesens.automationpractice.tests;
 
 import org.testng.annotations.Test;
 

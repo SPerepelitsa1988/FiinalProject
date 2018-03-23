@@ -3,9 +3,9 @@
 
 <suite name="CrossBrowserTestExample">
     <test name="FirefoxTest">
-        <parameter name="browser" value="firefox"/>
+        <!--<parameter name="browser" value="firefox"/>-->
         <classes>
-            <class name="com.telesens.test.tests.AddreessTest" >
+            <class name="com.telesens.automationpractice.tests.AddressTest" >
                 <!--<methods>-->
                     <!--<include name="testDemo" />-->
                     <!--<exclude name="addNewAddressTest" />-->
@@ -13,25 +13,25 @@
             </class>
         </classes>
     </test>
-    <!--<test name="ChromeTest">-->
+    <!--<automationpractice name="ChromeTest">-->
         <!--<parameter name="browser" value="chrome"/>-->
         <!--<packages>-->
             <!--<package name="com.telesens.*">-->
             <!--</package>-->
         <!--</packages>-->
-    <!--</test>-->
-    <!--<test name="IETest">-->
+    <!--</automationpractice>-->
+    <!--<automationpractice name="IETest">-->
         <!--<parameter name="browser" value="IE"/>-->
         <!--<packages>-->
             <!--<package name="com.telesens.*">-->
             <!--</package>-->
         <!--</packages>-->
-    <!--</test>-->
-    <!--<test name="EdgeTest">-->
+    <!--</automationpractice>-->
+    <!--<automationpractice name="EdgeTest">-->
         <!--<parameter name="browser" value="edge"/>-->
         <!--<packages>-->
             <!--<package name="com.telesens.*">-->
             <!--</package>-->
         <!--</packages>-->
-    <!--</test>-->
+    <!--</automationpractice>-->
 </suite>

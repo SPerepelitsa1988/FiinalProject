@@ -1,7 +1,7 @@
-package com.telesens.test.appmanager;
+package com.telesens.automationpractice.appmanager;
 
-import com.telesens.test.appmanager.helper.AddressHelper;
-import com.telesens.test.appmanager.helper.SessionHelper;
+import com.telesens.automationpractice.appmanager.helper.AddressHelper;
+import com.telesens.automationpractice.appmanager.helper.SessionHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -17,6 +17,11 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     protected WebDriver driver;
     protected String baseUrl;
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public AddressHelper getAddressHelper() {
         return addressHelper;
@@ -26,7 +31,7 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
-    public void init(String browser) throws Exception {
+    public void init() throws Exception {
         if (browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "d:/distribs/selenium/chromedriver.exe");
             driver = new ChromeDriver();
@@ -46,7 +51,7 @@ public class ApplicationManager {
         }
 
         baseUrl = "http://automationpractice.com/index.php";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(baseUrl + "/index.php");
         addressHelper = new AddressHelper(driver);
         sessionHelper = new SessionHelper(driver);

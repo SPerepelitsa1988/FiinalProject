@@ -5,14 +5,14 @@
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.telesens.test.tests.LoginTest" />
+            <class name="com.telesens.automationpractice.tests.LoginTest" />
         </classes>
     </test>
-    <!--<test name="ChromeTest">-->
+    <!--<automationpractice name="ChromeTest">-->
         <!--<parameter name="browser" value="chrome"/>-->
         <!--<packages>-->
             <!--<package name="com.telesens.*">-->
             <!--</package>-->
         <!--</packages>-->
-    <!--</test>-->
+    <!--</automationpractice>-->
 </suite>
