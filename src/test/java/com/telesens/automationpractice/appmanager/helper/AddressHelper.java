@@ -15,6 +15,7 @@ import java.util.Set;
 public class AddressHelper {
 
     private WebDriver driver;
+    private Addresses addressesCache = null;
 
     public AddressHelper(WebDriver driver) {
         this.driver = driver;
@@ -61,16 +62,26 @@ public class AddressHelper {
                 .contains(addressAlias.toUpperCase());
     }
 
-    // TOdo
     public void remove(String addressAlias) {
         new MyAddressPage(driver)
                 .clickDeleteButton(addressAlias)
                 .acceptDeletion();
 
+        addressesCache = null;
+    }
+
+    public void create(AddressData address) {
+        initCreation();
+        fillForm(address);
+        submit();
+        addressesCache = null;
     }
 
     public Addresses all() {
-        Addresses addressAll = new Addresses();
+        if (addressesCache != null)
+            return addressesCache;
+
+        addressesCache = new Addresses();
 
         List<String> firstNames = new MyAddressPage(driver).getFirstNameList();
         List<String> lastNames = new MyAddressPage(driver).getLastNameList();
@@ -84,7 +95,7 @@ public class AddressHelper {
         List<String> addressAliases = new MyAddressPage(driver).getAddressAliasList();
 
         for (int i = 0; i < addressAliases.size(); i++) {
-            addressAll.add(new AddressData()
+            addressesCache.add(new AddressData()
                     .withFirstName(firstNames.get(i))
                     .withLastName(lastNames.get(i))
                     .withAddress(addresses.get(i))
@@ -98,6 +109,6 @@ public class AddressHelper {
             );
         }
 
-        return addressAll;
+        return addressesCache;
     }
 }
