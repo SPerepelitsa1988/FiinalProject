@@ -10,14 +10,13 @@ public class SessionHelper {
         this.driver = driver;
     }
 
-    // TODO use LoginPage
-    public void login() {
+    public void login(String login, String password) {
         driver.findElement(By.linkText("Sign in")).click();
         driver.findElement(By.id("email")).click();
         driver.findElement(By.id("email")).clear();
-        driver.findElement(By.id("email")).sendKeys("oleg.kh81@gmail.com");
+        driver.findElement(By.id("email")).sendKeys(login);
         driver.findElement(By.id("passwd")).clear();
-        driver.findElement(By.id("passwd")).sendKeys("vlrevlor");
+        driver.findElement(By.id("passwd")).sendKeys(password);
         driver.findElement(By.id("SubmitLogin")).click();
     }
 }

@@ -9,6 +9,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -17,10 +20,18 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     protected WebDriver driver;
     protected String baseUrl;
-    private String browser;
 
-    public ApplicationManager(String browser) {
+    private final String browser;
+    private final Properties properties;
+
+    public ApplicationManager(String browser)  {
         this.browser = browser;
+        this.properties=new Properties();
+        try {
+            properties.load(new FileReader(new File("src/main/resources/test.properties")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public AddressHelper address() {
@@ -32,29 +43,31 @@ public class ApplicationManager {
     }
 
     public void init() throws Exception {
+
         if (browser.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "d:/distribs/selenium/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
             driver = new ChromeDriver();
         }
         else if (browser.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "d:/distribs/selenium/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
             driver = new FirefoxDriver();
         }
         else if(browser.equals("IE")) {
             File ie = new File("d:/distribs/selenium/IEDriverServer.exe");
-            System.setProperty("webdriver.ie.driver", ie.getAbsolutePath());
+            System.setProperty("webdriver.ie.driver", properties.getProperty("ie.driver"));
             driver = new InternetExplorerDriver();
         }
         else if (browser.equals("edge")) {
-            System.setProperty("webdriver.edge.driver", "d:/distribs/selenium/MicrosoftWebDriver.exe");
+            System.setProperty("webdriver.edge.driver", properties.getProperty("edge.driver"));
             driver = new EdgeDriver();
         }
 
-        baseUrl = "http://automationpractice.com/index.php";
+        baseUrl = properties.getProperty("url");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(baseUrl + "/index.php");
         addressHelper = new AddressHelper(driver);
         sessionHelper = new SessionHelper(driver);
+        session().login(properties.getProperty("login"), properties.getProperty("password"));
     }
 
 
