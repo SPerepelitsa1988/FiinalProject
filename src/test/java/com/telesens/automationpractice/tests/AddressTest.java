@@ -14,7 +14,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddressTest extends BaseTest {
-    private static Logger LOG = LogManager.getLogger(AddressTest.class.getName());
 
     @BeforeMethod
     public void preparePreconditions() {
