@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import static org.openqa.selenium.remote.BrowserType.*;
+
 public class ApplicationManager {
 
     private AddressHelper addressHelper;
@@ -21,14 +23,14 @@ public class ApplicationManager {
     protected WebDriver driver;
     protected String baseUrl;
 
-    private final String browser;
     private final Properties properties;
 
-    public ApplicationManager(String browser)  {
-        this.browser = browser;
+    public ApplicationManager()  {
         this.properties=new Properties();
         try {
-            properties.load(new FileReader(new File("src/main/resources/test.properties")));
+            String propertyFile = System.getProperty("configFile");
+//            String propertyFile = System.getProperty("configFile", "src/main/resources/test.properties");
+            properties.load(new FileReader(new File(propertyFile)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,21 +44,21 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
-    public void init() throws Exception {
+    public void init(String browser) {
 
-        if (browser.equals("chrome")) {
+        if (browser.equals(CHROME)) {
             System.setProperty("webdriver.chrome.driver", properties.getProperty("chrome.driver"));
             driver = new ChromeDriver();
         }
-        else if (browser.equals("firefox")) {
+        else if (browser.equals(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", properties.getProperty("firefox.driver"));
             driver = new FirefoxDriver();
         }
-        else if(browser.equals("IE")) {
+        else if(browser.equals(IE)) {
             System.setProperty("webdriver.ie.driver", properties.getProperty("ie.driver"));
             driver = new InternetExplorerDriver();
         }
-        else if (browser.equals("edge")) {
+        else if (browser.equals(EDGE)) {
             System.setProperty("webdriver.edge.driver", properties.getProperty("edge.driver"));
             driver = new EdgeDriver();
         }

@@ -2,15 +2,12 @@ package com.telesens.automationpractice.appmanager.helper;
 
 import com.telesens.automationpractice.appmanager.model.AddressData;
 import com.telesens.automationpractice.appmanager.model.Addresses;
-import com.telesens.automationpractice.appmanager.page.AccountPage;
-import com.telesens.automationpractice.appmanager.page.FormAddressPage;
-import com.telesens.automationpractice.appmanager.page.MyAddressPage;
+import com.telesens.automationpractice.page.AccountPage;
+import com.telesens.automationpractice.page.FormAddressPage;
+import com.telesens.automationpractice.page.MyAddressPage;
 import org.openqa.selenium.WebDriver;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AddressHelper {
 

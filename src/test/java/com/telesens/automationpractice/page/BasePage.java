@@ -1,4 +1,4 @@
-package com.telesens.automationpractice.appmanager.page;
+package com.telesens.automationpractice.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,7 +34,7 @@ public class BasePage {
         new Select(select).selectByVisibleText(text);
     }
 
-    protected void allertAccept() {
+    protected void alertAccept() {
         driver.switchTo().alert().accept();
     }
 

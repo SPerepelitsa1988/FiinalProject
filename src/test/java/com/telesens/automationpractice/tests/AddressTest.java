@@ -2,12 +2,9 @@ package com.telesens.automationpractice.tests;
 
 import com.telesens.automationpractice.appmanager.model.AddressData;
 import com.telesens.automationpractice.appmanager.model.Addresses;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;

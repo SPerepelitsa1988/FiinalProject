@@ -65,6 +65,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <configFile>${configFile}</configFile>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

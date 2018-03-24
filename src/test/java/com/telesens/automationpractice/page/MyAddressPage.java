@@ -1,11 +1,10 @@
-package com.telesens.automationpractice.appmanager.page;
+package com.telesens.automationpractice.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyAddressPage extends BasePage {
@@ -105,7 +104,7 @@ public class MyAddressPage extends BasePage {
     }
 
     public MyAddressPage acceptDeletion() {
-        allertAccept();
+        alertAccept();
         return new MyAddressPage(driver);
     }
 }
