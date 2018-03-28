@@ -2,11 +2,13 @@ package com.telesens.automationpractice.appmanager;
 
 import com.telesens.automationpractice.appmanager.helper.AddressHelper;
 import com.telesens.automationpractice.appmanager.helper.SessionHelper;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.FileReader;
@@ -28,8 +30,7 @@ public class ApplicationManager {
     public ApplicationManager()  {
         this.properties=new Properties();
         try {
-            String propertyFile = System.getProperty("configFile");
-//            String propertyFile = System.getProperty("configFile", "src/main/resources/test.properties");
+            String propertyFile = System.getProperty("configFile", "src/main/resources/test.properties");
             properties.load(new FileReader(new File(propertyFile)));
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,8 +56,11 @@ public class ApplicationManager {
             driver = new FirefoxDriver();
         }
         else if(browser.equals(IE)) {
-            System.setProperty("webdriver.ie.driver", properties.getProperty("ie.driver"));
-            driver = new InternetExplorerDriver();
+            DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+            caps.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL, System.getProperty("url"));
+            caps.setCapability("ignoreZoomSetting", true);
+            caps.setCapability("nativeEvents",false);
+            driver = new InternetExplorerDriver(caps);
         }
         else if (browser.equals(EDGE)) {
             System.setProperty("webdriver.edge.driver", properties.getProperty("edge.driver"));
@@ -64,7 +68,8 @@ public class ApplicationManager {
         }
 
         baseUrl = properties.getProperty("url");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get(baseUrl + "/index.php");
         addressHelper = new AddressHelper(driver);
         sessionHelper = new SessionHelper(driver);
@@ -72,7 +77,7 @@ public class ApplicationManager {
     }
 
 
-    public void stop() throws Exception {
+    public void stop()  {
         driver.quit();
     }
 
