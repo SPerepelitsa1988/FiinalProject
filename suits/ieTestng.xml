@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="CrossBrowserTestExample">
-    <parameter name="browser" value="ie"/>
+    <parameter name="browser" value="internet explorer"/>
     <test name="IETest">
         <classes>
             <class name="com.telesens.automationpractice.tests.AddressTest"  />
