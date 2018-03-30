@@ -91,6 +91,37 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>properties-maven-plugin</artifactId>
+                        <version>1.0.0</version>
+                        <executions>
+                            <execution>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>read-project-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <delimiters>
+                                        <delimiter>@</delimiter>
+                                    </delimiters>
+                                    <files>
+                                        <file>${project.basedir}/src/main/resources/backup.bat</file>
+                                    </files>
+                                    <replacements>
+                                        <replacement>
+                                            <token>artifact</token>
+                                            <value>${project.artifactId}</value>
+                                        </replacement>
+                                        <replacement>
+                                            <token>version</token>
+                                            <value>${project.version}</value>
+                                        </replacement>
+                                    </replacements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version>3.1.0</version>
                         <executions>
@@ -102,7 +133,7 @@
                                 </goals>
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
-                                    <finalName>automationpractice-${project.version}</finalName>
+                                    <finalName>${project.artifactId}-${project.version}</finalName>
                                     <descriptors>
                                         <descriptor>src/main/assembly/assembly.xml</descriptor>
                                     </descriptors>

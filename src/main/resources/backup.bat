@@ -1,5 +1,6 @@
 echo off
-    set fName=automationpractice-1.0
+    ::set fName=@artifact@-@version@
+    set fName=selenium-test-1.0
     set fExt=.zip
     set rootDir=d:\programming\qa\seleniumtest\target
     set src=%rootDir%\%fName%%fExt%
