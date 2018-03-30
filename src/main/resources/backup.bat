@@ -27,9 +27,9 @@ goto :EOF
 :assignTime
     for /F "tokens=2" %%i in ('date /t') do set curDate=%%i
 
-    set yy=%curDate:~6,4%
-    set mh=%curDate:~0,2%
-    set dd=%curDate:~3,2%
+    set yy=%date:~6,4%
+    set mh=%date:~0,2%
+    set dd=%date:~3,2%
     set hh=%time:~0,2%
     set mm=%time:~3,2%
     set ss=%time:~6,2%
